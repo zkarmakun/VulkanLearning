@@ -7,21 +7,67 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ffa8577b-1237-4e86-ad99-7d0af82cff93" name="Changes" comment="" />
+    <list default="true" id="ffa8577b-1237-4e86-ad99-7d0af82cff93" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Rainbow/Core/Paths.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rainbow/Core/Paths.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rainbow/GameFramework/Actor.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rainbow/GameFramework/Actor.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rainbow/GameFramework/StaticActor.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rainbow/GameFramework/StaticActor.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rainbow/GameFramework/World.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rainbow/GameFramework/World.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rainbow/Renderer/RenderResource.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rainbow/Renderer/RenderResource.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Rainbow/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Rainbow/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rainbow/Imports/FbxImport.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Rainbow/Imports/FbxImport.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rainbow/Imports/FbxImport.h" beforeDir="false" afterPath="$PROJECT_DIR$/Rainbow/Imports/FbxImport.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rainbow/Rainbow.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rainbow/Rainbow.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rainbow/Renderer/CommandList.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Rainbow/Renderer/CommandList.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rainbow/Renderer/CommandList.h" beforeDir="false" afterPath="$PROJECT_DIR$/Rainbow/Renderer/CommandList.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rainbow/Renderer/RenderWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Rainbow/Renderer/RenderWindow.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rainbow/Renderer/RenderWindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/Rainbow/Renderer/RenderWindow.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rainbow/Renderer/Renderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Rainbow/Renderer/Renderer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rainbow/Renderer/Renderer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Rainbow/Renderer/Renderer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rainbow/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Rainbow/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rainbow/x64/Debug/Rainbow.exe.recipe" beforeDir="false" afterPath="$PROJECT_DIR$/Rainbow/x64/Debug/Rainbow.exe.recipe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rainbow/x64/Debug/Rainbow.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/Rainbow/x64/Debug/Rainbow.ilk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rainbow/x64/Debug/Rainbow.tlog/CL.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/Rainbow/x64/Debug/Rainbow.tlog/CL.command.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rainbow/x64/Debug/Rainbow.tlog/CL.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/Rainbow/x64/Debug/Rainbow.tlog/CL.read.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rainbow/x64/Debug/Rainbow.tlog/CL.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/Rainbow/x64/Debug/Rainbow.tlog/CL.write.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rainbow/x64/Debug/Rainbow.tlog/Cl.items.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/Rainbow/x64/Debug/Rainbow.tlog/Cl.items.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rainbow/x64/Debug/Rainbow.tlog/Rainbow.lastbuildstate" beforeDir="false" afterPath="$PROJECT_DIR$/Rainbow/x64/Debug/Rainbow.tlog/Rainbow.lastbuildstate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rainbow/x64/Debug/Rainbow.tlog/link.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/Rainbow/x64/Debug/Rainbow.tlog/link.command.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rainbow/x64/Debug/Rainbow.tlog/link.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/Rainbow/x64/Debug/Rainbow.tlog/link.read.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rainbow/x64/Debug/Rainbow.tlog/link.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/Rainbow/x64/Debug/Rainbow.tlog/link.write.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rainbow/x64/Debug/vc143.idb" beforeDir="false" afterPath="$PROJECT_DIR$/Rainbow/x64/Debug/vc143.idb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rainbow/x64/Debug/vc143.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Rainbow/x64/Debug/vc143.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x64/Debug/Rainbow.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/x64/Debug/Rainbow.pdb" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://C:/Program Files (x86)/Windows Kits/10/Include/10.0.22000.0/ucrt/stdio.h" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.36.32532/include/memory" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.36.32532/include/vector" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.37.32822/include/vcruntime.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ThirdParty/FbxSdk/include/fbxsdk/fileio/fbxiosettingspath.h" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ThirdParty/FbxSdk/include/fbxsdk/scene/geometry/fbxlayer.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ThirdParty/Vulkan/Include/SDL2/SDL_events.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ThirdParty/Vulkan/Include/SDL2/SDL_stdinc.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ThirdParty/Vulkan/Include/SDL2/SDL_vulkan.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ThirdParty/Vulkan/Include/glm/detail/func_exponential.inl" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ThirdParty/Vulkan/Include/glm/detail/type_vec3.inl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ThirdParty/Vulkan/Include/glm/exponential.hpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ThirdParty/Vulkan/Include/vulkan/vulkan_core.h" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -39,18 +85,19 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C++&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
     &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\yoshi\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\yoshi\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\yoshi\\AppData\\Local\\Symbols\\src&quot;
+      &quot;C:\\Users\\jorge.calleros\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\jorge.calleros\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\jorge.calleros\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
 }</component>
@@ -123,6 +170,8 @@
       <workItem from="1697906797530" duration="2458000" />
       <workItem from="1697909446659" duration="6583000" />
       <workItem from="1698021053754" duration="1564000" />
+      <workItem from="1698155228855" duration="1435000" />
+      <workItem from="1698157810521" duration="14197000" />
     </task>
     <servers />
   </component>

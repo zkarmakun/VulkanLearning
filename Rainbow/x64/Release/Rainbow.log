@@ -1,3 +1,0 @@
-﻿  FRenderer.cpp
-G:\RainbowVulkan\Rainbow\Rainbow\Renderer\FRenderer.h(5,10): fatal  error C1083: Cannot open include file: 'Core/MinimalCore.h': No such file or directory
-  main.cpp

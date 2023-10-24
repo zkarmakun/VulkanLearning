@@ -1,5 +1,8 @@
 ﻿#pragma once
+#include <vector>
 #include <vulkan/vulkan_core.h>
+
+#include "RenderResource.h"
 #include "Core/MinimalCore.h"
 
 class FRenderer;
@@ -24,6 +27,12 @@ public:
 
     void SetViewport(int width,int height);
     void SetScissor(int width,int height);
+    
+    FVertexBuffer* CreateVertexBuffer(std::vector<FStaticVertex> VertexData, std::vector<uint32_t> IndicesData);
+
+private:
+    void CreateBuffer(VkDeviceSize size, VkBufferUsageFlags usage, VkMemoryPropertyFlags properties, VkBuffer& buffer, VkDeviceMemory& bufferMemory);
+    void CopyBuffer(VkCommandPool commandPool, VkQueue queue, VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize size);
 
 private:
     FRenderer* Renderer;

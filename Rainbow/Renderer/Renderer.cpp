@@ -6,11 +6,10 @@
 #include <vector>
 #include <SDL2/SDL_events.h>
 #include <SDL2/SDL_log.h>
-#include <SDL2/SDL_timer.h>
 #include <vulkan/vulkan_core.h>
-
 #include "CommandList.h"
 #include "RenderWindow.h"
+#include "GameFramework/World.h"
 
 FCommandList FRenderer::CmdList;
 
@@ -18,6 +17,7 @@ FRenderer::FRenderer()
 {
     bInitialized = false;
     pRenderWindow = nullptr;
+    World = nullptr;
 }
 
 void FRenderer::Init(FRenderWindow* RenderWindow)
@@ -42,6 +42,8 @@ void FRenderer::Init(FRenderWindow* RenderWindow)
     LOG_Info("Initializing vulkan completed");
 
     CmdList = FCommandList(this);
+    World = new FWorld();
+    World->LoadWorld();
     bInitialized = true;
 }
 
@@ -74,7 +76,7 @@ void FRenderer::RenderLoop()
             VkClearDepthStencilValue ClearDepthStencilValue = {1.0f, 0};
             GetCommandList().BeginRenderPass(ClearColor, ClearDepthStencilValue);
             {
-                
+                World->Render();
             }
             GetCommandList().EndRenderPass();
         }
@@ -143,7 +145,7 @@ void FRenderer::CreateImage(uint32_t Width, uint32_t Height, VkFormat Format, Vk
     VkMemoryAllocateInfo allocInfo = {};
     allocInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
     allocInfo.allocationSize = memRequirements.size;
-    allocInfo.memoryTypeIndex = FindMemoryType(memRequirements.memoryTypeBits, MemoryPropertyFlags);
+    allocInfo.memoryTypeIndex = FindMemoryType(PhysicalDevice, memRequirements.memoryTypeBits, MemoryPropertyFlags);
 
     if (vkAllocateMemory(Device, &allocInfo, nullptr, &ImageMemory) != VK_SUCCESS)
     {
@@ -153,7 +155,7 @@ void FRenderer::CreateImage(uint32_t Width, uint32_t Height, VkFormat Format, Vk
     vkBindImageMemory(Device, Image, ImageMemory, 0);
 }
 
-uint32_t FRenderer::FindMemoryType(uint32_t TypeFilter, VkMemoryPropertyFlags MemoryPropertyFlags)
+uint32_t FRenderer::FindMemoryType(const VkPhysicalDevice& PhysicalDevice, uint32_t TypeFilter, VkMemoryPropertyFlags MemoryPropertyFlags)
 {
     VkPhysicalDeviceMemoryProperties memProperties;
     vkGetPhysicalDeviceMemoryProperties(PhysicalDevice, &memProperties);
@@ -172,6 +174,11 @@ uint32_t FRenderer::FindMemoryType(uint32_t TypeFilter, VkMemoryPropertyFlags Me
 VkDevice& FRenderer::GetDevice()
 {
     return Device;
+}
+
+VkPhysicalDevice& FRenderer::GetPhysicalDevice()
+{
+    return PhysicalDevice;
 }
 
 VkSwapchainKHR& FRenderer::GetSwapChain()
@@ -255,7 +262,7 @@ void FRenderer::CreateInstance()
     appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
     appInfo.pApplicationName = pRenderWindow->GetWindowName().c_str();
     appInfo.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
-    appInfo.pEngineName = "No Engine";
+    appInfo.pEngineName = "MyEngine";
     appInfo.engineVersion = VK_MAKE_VERSION(1, 0, 0);
     appInfo.apiVersion = VK_API_VERSION_1_0;
 
@@ -458,7 +465,7 @@ void FRenderer::CreateSwapChain()
     createInfo.imageArrayLayers = 1;
     createInfo.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
 
-   uint32_t queueFamilyIndices[] = {graphics_QueueFamilyIndex, present_QueueFamilyIndex};
+    uint32_t queueFamilyIndices[] = {graphics_QueueFamilyIndex, present_QueueFamilyIndex};
     if (graphics_QueueFamilyIndex != present_QueueFamilyIndex)
     {
         createInfo.imageSharingMode = VK_SHARING_MODE_CONCURRENT;

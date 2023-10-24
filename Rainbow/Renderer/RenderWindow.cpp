@@ -2,6 +2,8 @@
 
 #include <SDL2/SDL.h>
 
+#include "Core/Assertions.h"
+
 FRenderWindow::FRenderWindow(const string& title, int InWidth, int InHeight)
     : WindowsName(title)
     , Width(InWidth)
@@ -12,24 +14,21 @@ FRenderWindow::FRenderWindow(const string& title, int InWidth, int InHeight)
     init();
 }
 
-bool FRenderWindow::init()
+void FRenderWindow::init()
 {
     // Create an SDL window that supports Vulkan rendering.
     if(SDL_Init(SDL_INIT_VIDEO) != 0)
     {
-        printf("Could not initialize SDL.");
-        return false;
+        checkf(0, "Could not initialize SDL");
     }
     pWindow= SDL_CreateWindow(WindowsName.c_str(), SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED, Width, Height, SDL_WINDOW_VULKAN);
     if(pWindow == nullptr)
     {
-        printf("Could not create SDL window.");
-        return false;
+        checkf(0, "Could not create SDL window.");
     }
     
     bInit = true;
-    return bInit;
 }
 
 void FRenderWindow::Shutdown()

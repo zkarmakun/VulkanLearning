@@ -4,6 +4,7 @@
 #include <vector>
 #include "Core/MinimalCore.h"
 
+class FWorld;
 class FRenderWindow;
 class FCommandList;
 
@@ -17,10 +18,11 @@ public:
 
     VkImageView CreateImageView(VkImage Image, VkFormat Format, VkImageAspectFlags AspectFlags);
     void CreateImage(uint32_t Width, uint32_t Height, VkFormat Format, VkImageTiling Tiling, VkImageUsageFlags ImageUsageFlags, VkMemoryPropertyFlags MemoryPropertyFlags, VkImage& Image, VkDeviceMemory& ImageMemory);
-    uint32_t FindMemoryType(uint32_t TypeFilter, VkMemoryPropertyFlags MemoryPropertyFlags);
+    static uint32_t FindMemoryType(const VkPhysicalDevice& PhysicalDevice, uint32_t TypeFilter, VkMemoryPropertyFlags MemoryPropertyFlags);
 
 public:
     VkDevice& GetDevice();
+    VkPhysicalDevice& GetPhysicalDevice();
     VkSwapchainKHR& GetSwapChain();
     VkSemaphore& GetImageAvailableSemaphore();
     VkSemaphore& GetRenderingFinishedSemaphore();
@@ -96,5 +98,8 @@ private:
     std::vector<VkFence> Fences;
     std::vector<const char*> validationLayers;
 
+
+    FWorld* World;
+    
     static FCommandList CmdList;
 };

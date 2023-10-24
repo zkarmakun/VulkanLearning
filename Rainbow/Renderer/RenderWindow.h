@@ -9,7 +9,7 @@ class FRenderWindow
 {
 public:
     FRenderWindow(const string& title, int InWidth, int InHeight);
-    bool init();
+    void init();
     void Shutdown();
 
     SDL_Window* GetWindow() const;
