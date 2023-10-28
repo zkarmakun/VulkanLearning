@@ -1,0 +1,12 @@
+D:\JorgeCR\VulkanLearning\Rainbow\Core\Paths.cpp;D:\JorgeCR\VulkanLearning\Rainbow\x64\Debug\Paths.obj
+D:\JorgeCR\VulkanLearning\Rainbow\GameFramework\Actor.cpp;D:\JorgeCR\VulkanLearning\Rainbow\x64\Debug\Actor.obj
+D:\JorgeCR\VulkanLearning\Rainbow\GameFramework\Material.cpp;D:\JorgeCR\VulkanLearning\Rainbow\x64\Debug\Material.obj
+D:\JorgeCR\VulkanLearning\Rainbow\GameFramework\MeshActor.cpp;D:\JorgeCR\VulkanLearning\Rainbow\x64\Debug\MeshActor.obj
+D:\JorgeCR\VulkanLearning\Rainbow\GameFramework\World.cpp;D:\JorgeCR\VulkanLearning\Rainbow\x64\Debug\World.obj
+D:\JorgeCR\VulkanLearning\Rainbow\Imports\FbxImport.cpp;D:\JorgeCR\VulkanLearning\Rainbow\x64\Debug\FbxImport.obj
+D:\JorgeCR\VulkanLearning\Rainbow\main.cpp;D:\JorgeCR\VulkanLearning\Rainbow\x64\Debug\main.obj
+D:\JorgeCR\VulkanLearning\Rainbow\Renderer\CommandList.cpp;D:\JorgeCR\VulkanLearning\Rainbow\x64\Debug\CommandList.obj
+D:\JorgeCR\VulkanLearning\Rainbow\Renderer\Renderer.cpp;D:\JorgeCR\VulkanLearning\Rainbow\x64\Debug\Renderer.obj
+D:\JorgeCR\VulkanLearning\Rainbow\Renderer\RenderResource.cpp;D:\JorgeCR\VulkanLearning\Rainbow\x64\Debug\RenderResource.obj
+D:\JorgeCR\VulkanLearning\Rainbow\Renderer\RenderWindow.cpp;D:\JorgeCR\VulkanLearning\Rainbow\x64\Debug\RenderWindow.obj
+D:\JorgeCR\VulkanLearning\Rainbow\Shaders\DefaultMaterial.hlsl;D:\JorgeCR\VulkanLearning\Rainbow\x64\Debug\DefaultMaterial.obj

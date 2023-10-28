@@ -1,12 +1,12 @@
 ﻿#include "World.h"
 
 #include "Actor.h"
-#include "StaticActor.h"
+#include "MeshActor.h"
 #include "Core/Paths.h"
 
 void FWorld::LoadWorld()
 {
-    const std::shared_ptr<FActor> NewMesh = CreateActor<FStaticActor>(glm::vec3(0), glm::vec3(0));
+    const std::shared_ptr<FActor> NewMesh = CreateActor<FMeshActor>(glm::vec3(0), glm::vec3(0));
     NewMesh->SetWorld(this);
     NewMesh->LoadActor(FPaths::GetContentDirectory() + "/Suzan.fbx");
     Actors.push_back(NewMesh);
@@ -18,7 +18,7 @@ void FWorld::Render()
     {
         if(Actor->IsValid())
         {
-            LOG_Info("Render the shit out of this");
+            // LOG_Info("Render the shit out of this");
         }
     }
 }

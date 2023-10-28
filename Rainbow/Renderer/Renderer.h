@@ -2,11 +2,34 @@
 #include <SDL2/SDL_vulkan.h>
 #include <vulkan/vulkan_core.h>
 #include <vector>
+#include "RenderResource.h"
 #include "Core/MinimalCore.h"
 
 class FWorld;
 class FRenderWindow;
 class FCommandList;
+
+struct FGBuffer
+{
+    int32_t Width, Height;
+    VkFramebuffer FrameBuffer;
+    FTexture BufferA;
+    FTexture BufferB;
+    FTexture BufferC;
+    FTexture BufferD;
+    FTexture Depth;
+    VkRenderPass RenderPass;
+    VkSampler Sampler;
+
+    FGBuffer()
+    {
+        Width = 0;
+        Height = 0;
+        FrameBuffer = nullptr;
+        RenderPass = nullptr;
+        Sampler = nullptr;
+    }
+};
 
 class FRenderer
 {
@@ -19,6 +42,7 @@ public:
     VkImageView CreateImageView(VkImage Image, VkFormat Format, VkImageAspectFlags AspectFlags);
     void CreateImage(uint32_t Width, uint32_t Height, VkFormat Format, VkImageTiling Tiling, VkImageUsageFlags ImageUsageFlags, VkMemoryPropertyFlags MemoryPropertyFlags, VkImage& Image, VkDeviceMemory& ImageMemory);
     static uint32_t FindMemoryType(const VkPhysicalDevice& PhysicalDevice, uint32_t TypeFilter, VkMemoryPropertyFlags MemoryPropertyFlags);
+    uint32_t GetMemoryType(uint32_t typeBits, VkMemoryPropertyFlags properties, VkBool32 *memTypeFound = nullptr) const;
 
 public:
     VkDevice& GetDevice();
@@ -71,10 +95,6 @@ private:
     VkDevice Device;
     VkQueue GraphicsQueue;
     VkQueue PresentQueue;
-    
-    VkPhysicalDeviceProperties PhysicalDeviceProperties;
-    VkPhysicalDeviceFeatures PhysicalDeviceFeatures;
-    VkPhysicalDeviceMemoryProperties PhysicalDeviceMemoryProperties;
 
     VkSwapchainKHR SwapChain;
     VkExtent2D SwapChainSize;
@@ -102,4 +122,7 @@ private:
     FWorld* World;
     
     static FCommandList CmdList;
+
+    uint32_t FrameIndex;
+    VkCommandBuffer CommandBuffer;
 };

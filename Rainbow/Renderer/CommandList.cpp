@@ -182,8 +182,71 @@ FVertexBuffer* FCommandList::CreateVertexBuffer(std::vector<FStaticVertex> Verte
     return VertexBuffer;
 }
 
+FTexture FCommandList::CreateTexture(uint32_t Witdh, uint32_t Height, VkFormat Format, VkImageUsageFlagBits Usage)
+{
+	FTexture NewTexture;
+    VkImageAspectFlags aspectMask = 0;
+	VkImageLayout imageLayout;
+
+	NewTexture.Format = Format;
+
+	if (Usage & VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT)
+	{
+		aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+		imageLayout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
+	}
+	if (Usage & VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT)
+	{
+		aspectMask = VK_IMAGE_ASPECT_DEPTH_BIT;
+		if (Format >= VK_FORMAT_D16_UNORM_S8_UINT)
+				aspectMask |=VK_IMAGE_ASPECT_STENCIL_BIT;
+		imageLayout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
+	}
+
+	check(aspectMask > 0);
+
+	VkImageCreateInfo ImageCreateInfo {};
+	ImageCreateInfo.sType = VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO;
+	ImageCreateInfo.imageType = VK_IMAGE_TYPE_2D;
+	ImageCreateInfo.format = Format;
+	ImageCreateInfo.extent.width = Witdh;
+	ImageCreateInfo.extent.height = Height;
+	ImageCreateInfo.extent.depth = 1;
+	ImageCreateInfo.mipLevels = 1;
+	ImageCreateInfo.arrayLayers = 1;
+	ImageCreateInfo.samples = VK_SAMPLE_COUNT_1_BIT;
+	ImageCreateInfo.tiling = VK_IMAGE_TILING_OPTIMAL;
+	ImageCreateInfo.usage = Usage | VK_IMAGE_USAGE_SAMPLED_BIT;
+
+	VkMemoryAllocateInfo MemoryAllocateInfo {};
+	MemoryAllocateInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
+	VkMemoryRequirements memReqs;
+
+	check(vkCreateImage(Renderer->GetDevice(), &ImageCreateInfo, nullptr, &NewTexture.Image) != VK_SUCCESS);
+	vkGetImageMemoryRequirements(Renderer->GetDevice(), NewTexture.Image, &memReqs);
+	MemoryAllocateInfo.allocationSize = memReqs.size;
+	MemoryAllocateInfo.memoryTypeIndex = Renderer->GetMemoryType(memReqs.memoryTypeBits, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+	check(vkAllocateMemory(Renderer->GetDevice(), &MemoryAllocateInfo, nullptr, &NewTexture.ImageMemory) != VK_SUCCESS);
+	check(vkBindImageMemory(Renderer->GetDevice(), NewTexture.Image, NewTexture.ImageMemory, 0) != VK_SUCCESS);
+
+	VkImageViewCreateInfo ImageViewCreateInfo {};
+	ImageViewCreateInfo.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
+	ImageViewCreateInfo.viewType = VK_IMAGE_VIEW_TYPE_2D;
+	ImageViewCreateInfo.format = Format;
+	ImageViewCreateInfo.subresourceRange = {};
+	ImageViewCreateInfo.subresourceRange.aspectMask = aspectMask;
+	ImageViewCreateInfo.subresourceRange.baseMipLevel = 0;
+	ImageViewCreateInfo.subresourceRange.levelCount = 1;
+	ImageViewCreateInfo.subresourceRange.baseArrayLayer = 0;
+	ImageViewCreateInfo.subresourceRange.layerCount = 1;
+	ImageViewCreateInfo.image = NewTexture.Image;
+	check(vkCreateImageView(Renderer->GetDevice(), &ImageViewCreateInfo, nullptr, &NewTexture.ImageView) != VK_SUCCESS);
+
+	return NewTexture;
+}
+
 void FCommandList::CreateBuffer(VkDeviceSize size, VkBufferUsageFlags usage,
-    VkMemoryPropertyFlags properties, VkBuffer& buffer, VkDeviceMemory& bufferMemory)
+                                VkMemoryPropertyFlags properties, VkBuffer& buffer, VkDeviceMemory& bufferMemory)
 {
     VkBufferCreateInfo bufferInfo = {};
     bufferInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;

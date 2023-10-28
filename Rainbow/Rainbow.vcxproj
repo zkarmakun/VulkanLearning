@@ -209,7 +209,8 @@
       <AdditionalIncludeDirectories>D:\JorgeCR\VulkanLearning\\ThirdParty\Vulkan\Include;D:\JorgeCR\VulkanLearning\\Rainbow;D:\JorgeCR\VulkanLearning\\ThirdParty\FbxSdk\include</AdditionalIncludeDirectories>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
-    <ClCompile Include="GameFramework\StaticActor.cpp">
+    <ClCompile Include="GameFramework\Material.cpp" />
+    <ClCompile Include="GameFramework\MeshActor.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <Optimization>Disabled</Optimization>
@@ -291,6 +292,7 @@
     <ClCompile Include="Renderer\Renderer.cpp" />
     <ClCompile Include="Renderer\RenderResource.cpp" />
     <ClCompile Include="Renderer\RenderWindow.cpp" />
+    <ClCompile Include="Shaders\DefaultMaterial.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Assertions.h" />
@@ -298,7 +300,8 @@
     <ClInclude Include="Core\MinimalCore.h" />
     <ClInclude Include="Core\Paths.h" />
     <ClInclude Include="GameFramework\Actor.h" />
-    <ClInclude Include="GameFramework\StaticActor.h" />
+    <ClInclude Include="GameFramework\Material.h" />
+    <ClInclude Include="GameFramework\MeshActor.h" />
     <ClInclude Include="GameFramework\World.h" />
     <ClInclude Include="Imports\FbxImport.h" />
     <ClInclude Include="Renderer\CommandList.h" />

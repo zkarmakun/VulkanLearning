@@ -47,6 +47,7 @@ void FRenderer::Init(FRenderWindow* RenderWindow)
     bInitialized = true;
 }
 
+VkPipelineStageFlags PipelineStageFlags = VK_PIPELINE_STAGE_TRANSFER_BIT;
 void FRenderer::RenderLoop()
 {
     bool stillRunning = true;
@@ -66,13 +67,69 @@ void FRenderer::RenderLoop()
                 break;
             }
         }
+        vkAcquireNextImageKHR(Device,
+                SwapChain,
+                UINT64_MAX,
+                ImageAvailableSemaphore,
+                VK_NULL_HANDLE,
+                &FrameIndex);
 
-        GetCommandList().AcquireNextImage();
+        CommandBuffer = GetCommandBuffers()[FrameIndex];
+        //Image = GetSwapChainImages()[FrameIndex];
+
+        vkResetCommandBuffer(CommandBuffer, 0);
+
+        VkCommandBufferBeginInfo beginInfo = {};
+        beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
+        beginInfo.flags = VK_COMMAND_BUFFER_USAGE_SIMULTANEOUS_USE_BIT;
+        vkBeginCommandBuffer(CommandBuffer, &beginInfo);
+
+        VkRenderPassBeginInfo render_pass_info = {};
+        render_pass_info.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
+        render_pass_info.renderPass        = GetRenderPass();
+        render_pass_info.framebuffer       = GetSwapChainFrameBuffers()[FrameIndex];
+        render_pass_info.renderArea.offset = {0, 0};
+        render_pass_info.renderArea.extent = GetSwapChainSize();
+
+        std::vector<VkClearValue> clearValues(2);
+        clearValues[0].color =  {0.2f, 1.f, 0.2f, 1.0f};
+        clearValues[1].depthStencil = {1.0f, 0};
+
+        render_pass_info.clearValueCount = static_cast<uint32_t>(clearValues.size());
+        render_pass_info.pClearValues = clearValues.data();
+	
+        vkCmdBeginRenderPass(CommandBuffer, &render_pass_info, VK_SUBPASS_CONTENTS_INLINE);
+
+        vkCmdEndRenderPass(CommandBuffer);
+
+        VkSubmitInfo submitInfo = {};
+        submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
+        submitInfo.waitSemaphoreCount = 1;
+        submitInfo.pWaitSemaphores = &ImageAvailableSemaphore;
+        submitInfo.pWaitDstStageMask = &PipelineStageFlags;
+        submitInfo.commandBufferCount = 1;
+        submitInfo.pCommandBuffers = &CommandBuffer;
+        submitInfo.signalSemaphoreCount = 1;
+        submitInfo.pSignalSemaphores = &RenderingFinishedSemaphore;
+        vkQueueSubmit(GraphicsQueue, 1, &submitInfo, GetFences()[FrameIndex]);
+
+        VkPresentInfoKHR presentInfo = {};
+        presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
+        presentInfo.waitSemaphoreCount = 1;
+        presentInfo.pWaitSemaphores = &RenderingFinishedSemaphore;
+        presentInfo.swapchainCount = 1;
+        presentInfo.pSwapchains = &GetSwapChain();
+        presentInfo.pImageIndices = &FrameIndex;
+        vkQueuePresentKHR(PresentQueue, &presentInfo);
+
+        vkQueueWaitIdle(PresentQueue);
+        
+        /*GetCommandList().AcquireNextImage();
 
         GetCommandList().ResetCommandBuffer();
         GetCommandList().BeginCommandBuffer();
         {
-            VkClearColorValue ClearColor = {0.2f, 0.2f, 0.2f, 1.0f};
+            VkClearColorValue ClearColor = {0.2f, 1.f, 0.2f, 1.0f};
             VkClearDepthStencilValue ClearDepthStencilValue = {1.0f, 0};
             GetCommandList().BeginRenderPass(ClearColor, ClearDepthStencilValue);
             {
@@ -83,7 +140,7 @@ void FRenderer::RenderLoop()
         GetCommandList().EndCommandBuffer();
 
         GetCommandList().QueueSubmit();
-        GetCommandList().QueuePresent();
+        GetCommandList().QueuePresent();*/
     }
 }
 
@@ -169,6 +226,34 @@ uint32_t FRenderer::FindMemoryType(const VkPhysicalDevice& PhysicalDevice, uint3
     }
 
     return 0;
+}
+
+uint32_t FRenderer::GetMemoryType(uint32_t typeBits, VkMemoryPropertyFlags properties, VkBool32* memTypeFound) const
+{
+    VkPhysicalDeviceMemoryProperties memProperties;
+    vkGetPhysicalDeviceMemoryProperties(PhysicalDevice, &memProperties);
+    for (uint32_t i = 0; i < memProperties.memoryTypeCount; i++)
+    {
+        if ((typeBits & 1) == 1)
+        {
+            if ((memProperties.memoryTypes[i].propertyFlags & properties) == properties)
+            {
+                if (memTypeFound)
+                {
+                    *memTypeFound = true;
+                }
+                return i;
+            }
+        }
+        typeBits >>= 1;
+    }
+
+    if (memTypeFound)
+    {
+        *memTypeFound = false;
+        return 0;
+    }
+    checkf(0, "Could not find a matching memory type");
 }
 
 VkDevice& FRenderer::GetDevice()

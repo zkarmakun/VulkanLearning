@@ -29,6 +29,7 @@ public:
     void SetScissor(int width,int height);
     
     FVertexBuffer* CreateVertexBuffer(std::vector<FStaticVertex> VertexData, std::vector<uint32_t> IndicesData);
+    FTexture CreateTexture(uint32_t Witdh, uint32_t Height, VkFormat Format, VkImageUsageFlagBits Usage);
 
 private:
     void CreateBuffer(VkDeviceSize size, VkBufferUsageFlags usage, VkMemoryPropertyFlags properties, VkBuffer& buffer, VkDeviceMemory& bufferMemory);

@@ -42,3 +42,30 @@ public:
         IndexBufferSize = 0;
     }
 };
+
+class FTexture
+{
+public:
+    VkImage Image;
+    VkDeviceMemory ImageMemory;
+    VkImageView ImageView;
+    VkFormat Format;
+    uint32_t SizeX, SizeY;
+    uint32_t MipMaps;
+    VkSampler Sampler;
+    VkImageLayout ImageLayout;
+    
+    FTexture()
+    {
+        Image = nullptr;
+        ImageMemory = nullptr;
+        ImageView = nullptr;
+        Format = VK_FORMAT_UNDEFINED;
+        SizeX = 0;
+        SizeY = 0;
+        MipMaps = 0;
+        Sampler = nullptr;
+        ImageLayout = VK_IMAGE_LAYOUT_UNDEFINED;
+    }
+};
+
