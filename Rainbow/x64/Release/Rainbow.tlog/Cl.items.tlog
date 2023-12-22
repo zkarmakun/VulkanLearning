@@ -1,0 +1,11 @@
+G:\VulkanLearning\Rainbow\Actor.cpp;G:\VulkanLearning\Rainbow\x64\Release\Actor.obj
+G:\VulkanLearning\Rainbow\CommandList.cpp;G:\VulkanLearning\Rainbow\x64\Release\CommandList.obj
+G:\VulkanLearning\Rainbow\FbxImport.cpp;G:\VulkanLearning\Rainbow\x64\Release\FbxImport.obj
+G:\VulkanLearning\Rainbow\main.cpp;G:\VulkanLearning\Rainbow\x64\Release\main.obj
+G:\VulkanLearning\Rainbow\Material.cpp;G:\VulkanLearning\Rainbow\x64\Release\Material.obj
+G:\VulkanLearning\Rainbow\MeshActor.cpp;G:\VulkanLearning\Rainbow\x64\Release\MeshActor.obj
+G:\VulkanLearning\Rainbow\Paths.cpp;G:\VulkanLearning\Rainbow\x64\Release\Paths.obj
+G:\VulkanLearning\Rainbow\Renderer.cpp;G:\VulkanLearning\Rainbow\x64\Release\Renderer.obj
+G:\VulkanLearning\Rainbow\RenderResource.cpp;G:\VulkanLearning\Rainbow\x64\Release\RenderResource.obj
+G:\VulkanLearning\Rainbow\RenderWindow.cpp;G:\VulkanLearning\Rainbow\x64\Release\RenderWindow.obj
+G:\VulkanLearning\Rainbow\World.cpp;G:\VulkanLearning\Rainbow\x64\Release\World.obj

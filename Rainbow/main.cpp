@@ -1,17 +1,17 @@
 #pragma once
 #define SDL_MAIN_HANDLED
-#include "Renderer/RenderWindow.h"
-#include "Renderer/Renderer.h"
+#include "RenderWindow.h"
+#include "Renderer.h"
 
 int main()
 {
-	FRenderWindow RenderWindow("Rainbow", 1280, 720);
+    FRenderWindow RenderWindow("Rainbow", 1920, 1080);
 	
-	FRenderer Renderer;
-	Renderer.Init(&RenderWindow);
-	Renderer.RenderLoop();
+    FRenderer Renderer;
+    Renderer.Init(&RenderWindow);
+    Renderer.RenderLoop();
 
-	Renderer.Shutdown();
-	RenderWindow.Shutdown();
-	return 0;
+    Renderer.Shutdown();
+    RenderWindow.Shutdown();
+    return 0;
 }
